@@ -70,37 +70,31 @@ def delete(root,value):
     else:
         #root has one child
         if root.left is None:
-            temp=root.right
-            root=None
-            return temp
+            return root.right
         elif root.right is None:
-            temp=root.left
-            root=None
-            return temp
+            return root.left
         #root has two children
-        else:
-            temp=Inordersuccessor(root)
-            t=root.data
-            root.data=temp.data
-            temp.data=t
-            root.right=delete(root.right,temp.data)
+        #else:
+        temp=Inordersuccessor(root.right)
+        root.data=temp.data
+        root.right=delete(root.right,temp.data)
+    return root
 
 
 root=None
 root=insert(root,6)
 root=insert(root,89)
 root=insert(root,1)
-root=insert(root,6)
 root=insert(root,90)
 root=insert(root,5)
 root=insert(root,78)
 root=insert(root,15)
+#Inorder(root)
 # data=search(root,63)
 # if data==False:
 #     print('Value not found')
 # else:
 #     print('Value found')
 
-delete(root,78)
+delete(root,15)
 Inorder(root)    
-Preorder(root)
